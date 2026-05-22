@@ -30,7 +30,7 @@ main{flex:1;padding:14px 14px 0;overflow-y:auto}
 #vid{width:100%;height:100%;object-fit:cover;display:block}
 #cnv{display:none}
 .overlay{position:absolute;inset:0;pointer-events:none;display:flex;align-items:center;justify-content:center}
-.frame{width:70%;aspect-ratio:1;position:relative}
+.frame{width:75%;aspect-ratio:2/1;position:relative}
 .c{position:absolute;width:22px;height:22px}
 .c.tl{top:0;left:0;border-top:3px solid var(--a);border-left:3px solid var(--a);border-radius:3px 0 0 0}
 .c.tr{top:0;right:0;border-top:3px solid var(--a);border-right:3px solid var(--a);border-radius:0 3px 0 0}
@@ -39,19 +39,21 @@ main{flex:1;padding:14px 14px 0;overflow-y:auto}
 .sline{position:absolute;left:6px;right:6px;height:2px;background:linear-gradient(90deg,transparent,var(--a),#9FE1CB,var(--a),transparent);top:0;animation:sm 2s ease-in-out infinite;display:none}
 .scanning .sline{display:block}
 @keyframes sm{0%,100%{top:6px;opacity:0.3}50%{top:calc(100% - 8px);opacity:1}}
-.cbadge{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.75);color:#fff;font-size:11px;font-family:var(--m);padding:5px 14px;border-radius:20px;display:flex;align-items:center;gap:7px;white-space:nowrap}
+.cbadge{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.75);color:#fff;font-size:11px;font-family:var(--m);padding:5px 14px;border-radius:20px;display:flex;align-items:center;gap:7px;white-space:nowrap;max-width:90%}
 .dot{width:7px;height:7px;border-radius:50%;background:var(--a);animation:bl 1.2s infinite;flex-shrink:0}
 .dot.off{background:var(--mu);animation:none}
+.dot.warn{background:#EF9F27;animation:none}
 @keyframes bl{0%,100%{opacity:1}50%{opacity:0.2}}
+
+/* preprocessing indicator */
+.preproc-bar{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;align-items:center}
+.preproc-bar span{font-size:11px;color:var(--mu);font-family:var(--m)}
+.pp{font-size:10px;font-family:var(--m);padding:3px 8px;border-radius:4px;border:0.5px solid var(--br2);background:var(--bg3);color:var(--mu);transition:all 0.2s}
+.pp.active{background:#1D9E7520;color:#5DCAA5;border-color:rgba(29,158,117,0.4)}
+
 .err-box{display:none;background:#3A1010;border:0.5px solid #7A2020;border-radius:var(--r2);padding:14px 16px;margin-top:10px;font-size:13px;line-height:1.7;color:#F0AAAA}
 .err-box.show{display:block}
 .err-box strong{display:block;margin-bottom:4px;color:#F7C1C1;font-size:14px}
-
-/* format chips */
-.formats{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
-.chip{font-size:11px;font-family:var(--m);padding:4px 10px;border-radius:20px;border:0.5px solid var(--br2);background:var(--bg3);color:var(--mu);cursor:default}
-.chip.on{background:#1D9E7520;color:#5DCAA5;border-color:rgba(29,158,117,0.4)}
-
 .ctrls{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;margin-top:10px}
 .btn{padding:13px 14px;border-radius:var(--r2);border:0.5px solid var(--br2);background:var(--bg3);font-family:var(--f);font-size:13px;font-weight:500;color:var(--tx);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:background 0.15s;-webkit-appearance:none}
 .btn:active{background:var(--bg4)}
@@ -73,17 +75,18 @@ main{flex:1;padding:14px 14px 0;overflow-y:auto}
 .bdg{background:var(--bg4);color:var(--a);font-size:11px;font-family:var(--m);padding:2px 9px;border-radius:20px;border:0.5px solid var(--br2)}
 .cb{font-size:12px;color:var(--mu);background:none;border:none;cursor:pointer;font-family:var(--f)}
 .rl{display:flex;flex-direction:column;gap:8px;padding-bottom:32px}
-.ri{background:var(--bg2);border:0.5px solid var(--br);border-radius:var(--r);padding:12px 14px;animation:fi 0.22s ease}
-@keyframes fi{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+.ri{background:var(--bg2);border:0.5px solid var(--br);border-radius:var(--r);padding:12px 14px;animation:fadeIn 0.22s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
 .ri.new{border-color:rgba(29,158,117,0.35);background:#1D9E7510}
 .rm{display:flex;align-items:center;gap:8px;margin-bottom:7px;flex-wrap:wrap}
 .tt{font-size:10px;font-family:var(--m);font-weight:500;padding:2px 8px;border-radius:4px}
 .tt.QR_CODE,.tt.qr{background:#3C348920;color:#AFA9EC}
 .tt.url{background:#185FA520;color:#85B7EB}
-.tt.EAN_13,.tt.EAN_8,.tt.UPC_A,.tt.UPC_E,.tt.barcode{background:#1D9E7520;color:#5DCAA5}
+.tt.EAN_13,.tt.EAN_8,.tt.UPC_A,.tt.UPC_E{background:#1D9E7520;color:#5DCAA5}
 .tt.CODE_128,.tt.CODE_39,.tt.CODE_93{background:#BA751720;color:#EF9F27}
 .tt.DATA_MATRIX,.tt.AZTEC,.tt.PDF_417{background:#63991120;color:#97C459}
 .tt.ITF,.tt.CODABAR{background:#D4537E20;color:#ED93B1}
+.pp-tag{font-size:10px;font-family:var(--m);padding:2px 7px;border-radius:4px;background:#185FA520;color:#85B7EB}
 .rtime{font-size:10px;color:var(--mu);margin-left:auto;font-family:var(--m)}
 .rv{font-size:12px;color:var(--tx);font-family:var(--m);word-break:break-all;line-height:1.6;background:var(--bg3);padding:8px 10px;border-radius:6px;border:0.5px solid var(--br)}
 .ra{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
@@ -94,7 +97,6 @@ main{flex:1;padding:14px 14px 0;overflow-y:auto}
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--bg4);color:var(--tx);font-size:13px;padding:9px 20px;border-radius:24px;opacity:0;transition:all 0.2s;pointer-events:none;z-index:999;font-family:var(--f);white-space:nowrap;border:0.5px solid var(--br2)}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .pane{display:none}.pane.active{display:block}
-.loading{color:var(--mu);font-size:12px;font-family:var(--m);text-align:center;padding:8px 0}
 </style>
 </head>
 <body>
@@ -104,7 +106,7 @@ main{flex:1;padding:14px 14px 0;overflow-y:auto}
   </div>
   <div>
     <h1>QR &amp; Barcode Scanner</h1>
-    <p>QR · EAN · UPC · Code128 · and more</p>
+    <p>QR · EAN · UPC · Code128 · auto-enhance</p>
   </div>
 </header>
 
@@ -139,14 +141,20 @@ main{flex:1;padding:14px 14px 0;overflow-y:auto}
 
     <div class="err-box" id="errBox">
       <strong>⚠ Camera blocked</strong>
-      Chrome only allows camera on <strong>https://</strong> pages.<br>
-      Host this file on GitHub Pages, Netlify, or tiiny.host to get an HTTPS URL.
+      Chrome requires <strong>https://</strong> to access the camera.<br>
+      Upload this file to GitHub Pages or Netlify to get an HTTPS URL.
     </div>
 
-    <div id="libStatus" class="loading" style="display:none">⏳ Loading decoder library…</div>
-
-    <!-- detected format chips -->
-    <div class="formats" id="fmtChips"></div>
+    <!-- preprocessing pipeline indicators -->
+    <div class="preproc-bar">
+      <span>Processing:</span>
+      <div class="pp" id="pp-orig">Original</div>
+      <div class="pp" id="pp-gray">Grayscale</div>
+      <div class="pp" id="pp-contrast">Contrast</div>
+      <div class="pp" id="pp-thresh">Threshold</div>
+      <div class="pp" id="pp-rotate">Rotate</div>
+      <div class="pp" id="pp-invert">Invert</div>
+    </div>
 
     <div class="ctrls">
       <button class="btn p" id="startBtn" onclick="startCamera()">
@@ -168,13 +176,13 @@ main{flex:1;padding:14px 14px 0;overflow-y:auto}
     <div class="uz" id="dz" onclick="document.getElementById('fi').click()">
       <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
       <p><strong>Tap to choose image</strong></p>
-      <p style="margin-top:4px;font-size:12px">PNG · JPG · WebP</p>
+      <p style="margin-top:4px;font-size:12px">PNG · JPG · WebP · auto-enhanced</p>
     </div>
     <input type="file" id="fi" accept="image/*" onchange="handleFile(this.files[0])">
     <div class="uact">
       <button class="btn p" id="scanBtn" onclick="scanImg()" disabled>
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
-        Scan image
+        Scan &amp; enhance
       </button>
       <button class="btn icon" onclick="clearUpload()" id="clrBtn" disabled>
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -199,39 +207,164 @@ main{flex:1;padding:14px 14px 0;overflow-y:auto}
 
 <div class="toast" id="toast"></div>
 
-<!-- ZXing: supports QR, EAN-13, EAN-8, UPC-A, UPC-E, Code128, Code39, Code93, ITF, Codabar, DataMatrix, Aztec, PDF417 -->
 <script src="https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js"></script>
 <script>
 'use strict';
 
 let codeReader = null, stream = null, scanLoop = null, torch = false, results = [], uploadSrc = null;
-let libReady = false;
+let libReady = false, frameSkip = 0;
 
 // ── init ZXing ────────────────────────────────────────────────────────────
 function initLib(){
   try {
-    // MultiFormatReader decodes ALL barcode & QR formats
     codeReader = new ZXing.BrowserMultiFormatReader();
     libReady = true;
-    document.getElementById('libStatus').style.display = 'none';
-    showFormatChips();
-  } catch(e) {
-    document.getElementById('libStatus').textContent = '⚠ Decoder failed to load. Refresh page.';
-  }
+  } catch(e) { console.error('ZXing init failed', e); }
 }
 
-const FORMATS = ['QR_CODE','EAN_13','EAN_8','UPC_A','UPC_E','CODE_128','CODE_39','CODE_93','ITF','CODABAR','DATA_MATRIX','AZTEC','PDF_417'];
+// ── preprocessing pipeline ────────────────────────────────────────────────
+// Creates multiple canvas variants from source canvas and tries to decode each
+function* preprocessVariants(srcCanvas) {
+  const W = srcCanvas.width, H = srcCanvas.height;
 
-function showFormatChips(){
-  const el = document.getElementById('fmtChips');
-  el.innerHTML = FORMATS.map(f=>`<span class="chip on tt ${f}">${f.replace('_',' ')}</span>`).join('');
+  // helper: new canvas from imagedata
+  function mkCanvas(w, h) {
+    const c = document.createElement('canvas'); c.width=w; c.height=h; return c;
+  }
+  function getCtx(c){ return c.getContext('2d', {willReadFrequently:true}); }
+
+  // 1. original
+  yield {canvas: srcCanvas, label:'orig'};
+
+  // 2. grayscale
+  const grayC = mkCanvas(W,H), gCtx = getCtx(grayC);
+  gCtx.drawImage(srcCanvas,0,0);
+  const gData = gCtx.getImageData(0,0,W,H);
+  const gpx = gData.data;
+  for(let i=0;i<gpx.length;i+=4){ const v=gpx[i]*0.299+gpx[i+1]*0.587+gpx[i+2]*0.114; gpx[i]=gpx[i+1]=gpx[i+2]=v; }
+  gCtx.putImageData(gData,0,0);
+  yield {canvas: grayC, label:'gray'};
+
+  // 3. high contrast (stretch histogram)
+  const conC = mkCanvas(W,H), cCtx = getCtx(conC);
+  cCtx.drawImage(grayC,0,0);
+  const cData = cCtx.getImageData(0,0,W,H);
+  const cpx = cData.data;
+  let mn=255,mx=0;
+  for(let i=0;i<cpx.length;i+=4){ if(cpx[i]<mn)mn=cpx[i]; if(cpx[i]>mx)mx=cpx[i]; }
+  const range = mx-mn || 1;
+  for(let i=0;i<cpx.length;i+=4){ const v=((cpx[i]-mn)/range*255)|0; cpx[i]=cpx[i+1]=cpx[i+2]=v; }
+  cCtx.putImageData(cData,0,0);
+  yield {canvas: conC, label:'contrast'};
+
+  // 4. adaptive threshold (local mean)
+  const thC = mkCanvas(W,H), tCtx = getCtx(thC);
+  tCtx.drawImage(grayC,0,0);
+  const tData = tCtx.getImageData(0,0,W,H);
+  const tpx = tData.data;
+  // simple global otsu-like threshold
+  const hist = new Array(256).fill(0);
+  for(let i=0;i<tpx.length;i+=4) hist[tpx[i]]++;
+  const total = W*H; let sum=0;
+  for(let i=0;i<256;i++) sum+=i*hist[i];
+  let sumB=0,wB=0,wF=0,varMax=0,thresh=128;
+  for(let t=0;t<256;t++){
+    wB+=hist[t]; if(!wB) continue;
+    wF=total-wB; if(!wF) break;
+    sumB+=t*hist[t];
+    const mB=sumB/wB, mF=(sum-sumB)/wF;
+    const varBetween=wB*wF*(mB-mF)**2;
+    if(varBetween>varMax){ varMax=varBetween; thresh=t; }
+  }
+  for(let i=0;i<tpx.length;i+=4){ const v=tpx[i]>thresh?255:0; tpx[i]=tpx[i+1]=tpx[i+2]=v; }
+  tCtx.putImageData(tData,0,0);
+  yield {canvas: thC, label:'thresh'};
+
+  // 5. inverted threshold
+  const invC = mkCanvas(W,H), iCtx = getCtx(invC);
+  iCtx.drawImage(thC,0,0);
+  const iData = iCtx.getImageData(0,0,W,H);
+  const ipx = iData.data;
+  for(let i=0;i<ipx.length;i+=4){ ipx[i]=255-ipx[i]; ipx[i+1]=255-ipx[i+1]; ipx[i+2]=255-ipx[i+2]; }
+  iCtx.putImageData(iData,0,0);
+  yield {canvas: invC, label:'invert'};
+
+  // 6. rotations (90, 270) of contrast-enhanced — helps sideways barcodes
+  for(const angle of [90, 270]){
+    const rC = mkCanvas(H,W), rCtx = getCtx(rC);
+    rCtx.translate(angle===90?H:0, angle===270?W:0);
+    rCtx.rotate(angle*Math.PI/180);
+    rCtx.drawImage(conC,0,0);
+    yield {canvas: rC, label:'rotate'};
+  }
+
+  // 7. upscale x2 of original (helps low-res images)
+  const upC = mkCanvas(W*2,H*2), uCtx = getCtx(upC);
+  uCtx.imageSmoothingEnabled = true;
+  uCtx.imageSmoothingQuality = 'high';
+  uCtx.drawImage(conC,0,0,W*2,H*2);
+  yield {canvas: upC, label:'contrast'};
+
+  // 8. upscale + threshold
+  const upThC = mkCanvas(W*2,H*2), utCtx = getCtx(upThC);
+  utCtx.imageSmoothingEnabled = true;
+  utCtx.drawImage(thC,0,0,W*2,H*2);
+  yield {canvas: upThC, label:'thresh'};
+
+  // 9. sharpened via convolution on upscaled
+  const shC = mkCanvas(W*2,H*2), shCtx = getCtx(shC);
+  shCtx.drawImage(conC,0,0,W*2,H*2);
+  const shData = shCtx.getImageData(0,0,W*2,H*2);
+  const sd = shData.data, sw=W*2, sh2=H*2;
+  const kernel = [0,-1,0,-1,5,-1,0,-1,0];
+  const out = new Uint8ClampedArray(sd.length);
+  for(let y=1;y<sh2-1;y++){
+    for(let x=1;x<sw-1;x++){
+      const idx=(y*sw+x)*4;
+      for(let c=0;c<3;c++){
+        let v=0;
+        for(let ky=-1;ky<=1;ky++) for(let kx=-1;kx<=1;kx++)
+          v+=sd[((y+ky)*sw+(x+kx))*4+c]*kernel[(ky+1)*3+(kx+1)];
+        out[idx+c]=Math.max(0,Math.min(255,v));
+      }
+      out[idx+3]=255;
+    }
+  }
+  shData.data.set(out);
+  shCtx.putImageData(shData,0,0);
+  yield {canvas: shC, label:'contrast'};
+}
+
+function highlightPP(label){
+  document.querySelectorAll('.pp').forEach(el=>el.classList.remove('active'));
+  const map={orig:'pp-orig',gray:'pp-gray',contrast:'pp-contrast',thresh:'pp-thresh',rotate:'pp-rotate',invert:'pp-invert'};
+  if(map[label]) document.getElementById(map[label]).classList.add('active');
+}
+
+// ── try decode on a canvas ────────────────────────────────────────────────
+function tryDecode(canvas){
+  try {
+    const lum = new ZXing.HTMLCanvasElementLuminanceSource(canvas);
+    const bin = new ZXing.BinaryBitmap(new ZXing.HybridBinarizer(lum));
+    return codeReader.decodeBitmap(bin);
+  } catch(e){ return null; }
+}
+
+// ── decode with all preprocessing variants ───────────────────────────────
+function decodeWithPreprocessing(srcCanvas){
+  for(const {canvas, label} of preprocessVariants(srcCanvas)){
+    highlightPP(label);
+    const result = tryDecode(canvas);
+    if(result) return {result, label};
+  }
+  return null;
 }
 
 // ── helpers ───────────────────────────────────────────────────────────────
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }
 function escA(s){ return String(s).replace(/"/g,'&quot;') }
 let tid;
-function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(tid); tid=setTimeout(()=>t.classList.remove('show'),2500); }
+function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(tid); tid=setTimeout(()=>t.classList.remove('show'),2800); }
 function setStatus(on,msg){ document.getElementById('sdot').className='dot'+(on?'':' off'); document.getElementById('stxt').textContent=msg; }
 
 // ── tabs ──────────────────────────────────────────────────────────────────
@@ -246,52 +379,36 @@ function switchTab(t){
 // ── camera ────────────────────────────────────────────────────────────────
 async function startCamera(){
   document.getElementById('errBox').classList.remove('show');
-
-  if(location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1'){
-    document.getElementById('errBox').classList.add('show');
-    return;
+  if(location.protocol!=='https:'&&location.hostname!=='localhost'&&location.hostname!=='127.0.0.1'){
+    document.getElementById('errBox').classList.add('show'); return;
   }
-  if(!libReady){ toast('Decoder still loading, please wait…'); return; }
-
-  const startBtn = document.getElementById('startBtn');
-  startBtn.disabled = true;
-  startBtn.textContent = 'Starting…';
-
-  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+  if(!libReady){ toast('Decoder loading, please wait…'); return; }
+  const startBtn=document.getElementById('startBtn');
+  startBtn.disabled=true; startBtn.textContent='Starting…';
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){
     toast('Camera API not supported'); startBtn.disabled=false; startBtn.textContent='Start camera'; return;
   }
-
   try {
     let s;
-    try {
-      s = await navigator.mediaDevices.getUserMedia({ video:{ facingMode:{ideal:'environment'}, width:{ideal:1280}, height:{ideal:720} }, audio:false });
-    } catch(_) {
-      s = await navigator.mediaDevices.getUserMedia({ video:true, audio:false });
-    }
-    stream = s;
-    const vid = document.getElementById('vid');
-    vid.srcObject = stream;
-
-    await new Promise((res,rej)=>{
-      vid.onloadedmetadata = ()=>{ vid.play().then(res).catch(rej); };
-      setTimeout(rej, 8000);
-    });
-
-    document.getElementById('stopBtn').disabled = false;
-    document.getElementById('torchBtn').disabled = false;
+    try { s=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'},width:{ideal:1920},height:{ideal:1080}},audio:false}); }
+    catch(_){ s=await navigator.mediaDevices.getUserMedia({video:true,audio:false}); }
+    stream=s;
+    const vid=document.getElementById('vid');
+    vid.srcObject=stream;
+    await new Promise((res,rej)=>{ vid.onloadedmetadata=()=>vid.play().then(res).catch(rej); setTimeout(rej,8000); });
+    document.getElementById('stopBtn').disabled=false;
+    document.getElementById('torchBtn').disabled=false;
     document.getElementById('vwrap').classList.add('scanning');
     setStatus(true,'Scanning…');
-    startBtn.textContent = 'Running…';
+    startBtn.textContent='Running…';
     startScan();
-
-  } catch(e) {
-    startBtn.disabled = false;
-    startBtn.textContent = 'Start camera';
+  } catch(e){
+    startBtn.disabled=false; startBtn.textContent='Start camera';
     if(e.name==='NotAllowedError'||e.name==='PermissionDeniedError'){
       document.getElementById('errBox').innerHTML='<strong>⚠ Permission denied</strong>Tap the camera icon in the address bar → Allow → reload.';
       document.getElementById('errBox').classList.add('show');
-    } else if(e.name==='NotFoundError'){ toast('No camera found on this device');
-    } else if(e.name==='NotReadableError'){ toast('Camera busy — close other apps and retry');
+    } else if(e.name==='NotFoundError'){ toast('No camera found');
+    } else if(e.name==='NotReadableError'){ toast('Camera busy — close other apps');
     } else { toast('Camera error: '+(e.message||e.name)); }
   }
 }
@@ -306,49 +423,50 @@ function stopCamera(){
   document.getElementById('torchBtn').disabled=true;
   document.getElementById('torchBtn').classList.remove('ton');
   document.getElementById('vwrap').classList.remove('scanning');
+  document.querySelectorAll('.pp').forEach(el=>el.classList.remove('active'));
   setStatus(false,'Camera off');
 }
 
 function startScan(){
-  const vid=document.getElementById('vid'), cnv=document.getElementById('cnv'), ctx=cnv.getContext('2d',{willReadFrequently:true});
-  let last='', lastT=0;
+  const vid=document.getElementById('vid'), cnv=document.getElementById('cnv');
+  let last='', lastT=0, tick=0;
 
-  scanLoop = setInterval(async ()=>{
-    if(!stream || vid.readyState<2 || vid.videoWidth===0) return;
+  scanLoop=setInterval(()=>{
+    if(!stream||vid.readyState<2||vid.videoWidth===0) return;
+    tick++;
+    // full preprocessing every 3rd frame to keep UI smooth; quick decode every frame
+    const full = tick%3===0;
     cnv.width=vid.videoWidth; cnv.height=vid.videoHeight;
+    const ctx=cnv.getContext('2d',{willReadFrequently:true});
     ctx.drawImage(vid,0,0);
 
-    try {
-      // Use ZXing to decode from canvas ImageData
-      const imageData = ctx.getImageData(0,0,cnv.width,cnv.height);
-      const luminanceSource = new ZXing.HTMLCanvasElementLuminanceSource(cnv);
-      const binaryBitmap = new ZXing.BinaryBitmap(new ZXing.HybridBinarizer(luminanceSource));
-      const result = codeReader.decodeBitmap(binaryBitmap);
-
-      if(result){
-        const val = result.getText();
-        const fmt = result.getBarcodeFormat ? ZXing.BarcodeFormat[result.getBarcodeFormat()] : 'CODE';
-        const now = Date.now();
-        if(val !== last || now-lastT > 3000){
-          last=val; lastT=now;
-          addResult(val, fmt||'CODE');
-          setStatus(true,'✓ Found!');
-          setTimeout(()=>{ if(stream) setStatus(true,'Scanning…'); },1500);
-        }
-      }
-    } catch(e){
-      // NotFoundException is thrown when nothing found — normal, ignore
+    let found=null;
+    if(full){
+      found = decodeWithPreprocessing(cnv);
+    } else {
+      // fast path: just try original
+      const r=tryDecode(cnv);
+      if(r) found={result:r,label:'orig'};
     }
-  }, 250);
+
+    if(found){
+      const val=found.result.getText();
+      const fmt=ZXing.BarcodeFormat[found.result.getBarcodeFormat()]||'CODE';
+      const now=Date.now();
+      if(val!==last||now-lastT>3000){
+        last=val; lastT=now;
+        addResult(val,fmt,found.label);
+        setStatus(true,'✓ Found!');
+        setTimeout(()=>{ if(stream) setStatus(true,'Scanning…'); },1500);
+      }
+    }
+  },200);
 }
 
 async function toggleTorch(){
-  if(!stream) return;
-  torch=!torch;
-  try{
-    await stream.getVideoTracks()[0].applyConstraints({advanced:[{torch:torch}]});
-    document.getElementById('torchBtn').classList.toggle('ton',torch);
-  }catch(_){ toast('Torch not supported'); torch=false; }
+  if(!stream) return; torch=!torch;
+  try{ await stream.getVideoTracks()[0].applyConstraints({advanced:[{torch:torch}]}); document.getElementById('torchBtn').classList.toggle('ton',torch); }
+  catch(_){ toast('Torch not supported'); torch=false; }
 }
 
 // ── upload ────────────────────────────────────────────────────────────────
@@ -379,41 +497,32 @@ function clearUpload(){
 async function scanImg(){
   if(!uploadSrc||!libReady) return;
   const btn=document.getElementById('scanBtn');
-  btn.disabled=true; btn.textContent='Scanning…';
-
+  btn.disabled=true; btn.textContent='Enhancing…';
   try {
-    const img = new Image();
+    const img=new Image();
     await new Promise((res,rej)=>{ img.onload=res; img.onerror=rej; img.src=uploadSrc; });
     const c=document.createElement('canvas');
     c.width=img.width; c.height=img.height;
-    const ctx=c.getContext('2d');
-    ctx.drawImage(img,0,0);
-
-    const luminanceSource = new ZXing.HTMLCanvasElementLuminanceSource(c);
-    const binaryBitmap = new ZXing.BinaryBitmap(new ZXing.HybridBinarizer(luminanceSource));
-    const result = codeReader.decodeBitmap(binaryBitmap);
-
-    if(result){
-      const val=result.getText();
-      const fmt=result.getBarcodeFormat ? ZXing.BarcodeFormat[result.getBarcodeFormat()] : 'CODE';
-      addResult(val, fmt||'CODE');
-      toast('✓ Detected: '+(fmt||'code'));
+    c.getContext('2d').drawImage(img,0,0);
+    const found=decodeWithPreprocessing(c);
+    if(found){
+      const val=found.result.getText();
+      const fmt=ZXing.BarcodeFormat[found.result.getBarcodeFormat()]||'CODE';
+      addResult(val,fmt,found.label);
+      toast('✓ Detected via '+found.label+'!');
     } else {
-      toast('Nothing detected. Try a clearer image.');
+      toast('Not detected. Try a sharper/closer photo.');
     }
-  } catch(e){
-    if(e.name==='NotFoundException') toast('No barcode/QR found in image.');
-    else toast('Scan error: '+(e.message||e.name));
-  }
-
-  btn.disabled=false; btn.textContent='Scan image';
+  } catch(e){ toast('Error: '+(e.message||e.name)); }
+  btn.disabled=false; btn.textContent='Scan & enhance';
+  document.querySelectorAll('.pp').forEach(el=>el.classList.remove('active'));
 }
 
 // ── results ───────────────────────────────────────────────────────────────
-function addResult(value, format){
+function addResult(value,format,ppLabel){
   const t=new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
   const isUrl=/^https?:\/\//i.test(value);
-  results.unshift({value, format, t, isUrl, id:Date.now()});
+  results.unshift({value,format,t,isUrl,ppLabel,id:Date.now()});
   render();
 }
 
@@ -428,14 +537,13 @@ function render(){
     <div class="ri${i===0?' new':''}">
       <div class="rm">
         <span class="tt ${r.format}">${r.format.replace(/_/g,' ')}</span>
+        ${r.ppLabel&&r.ppLabel!=='orig'?`<span class="pp-tag">+${r.ppLabel}</span>`:''}
         <span class="rtime">${r.t}</span>
       </div>
       <div class="rv">${esc(r.value)}</div>
       <div class="ra">
-        <button class="mb" onclick="cp(${r.id})">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy
-        </button>
-        ${r.isUrl?`<button class="mb" onclick="window.open('${escA(r.value)}','_blank')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Open URL</button>`:''}
+        <button class="mb" onclick="cp(${r.id})"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
+        ${r.isUrl?`<button class="mb" onclick="window.open('${escA(r.value)}','_blank')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Open</button>`:''}
         <button class="mb" onclick="del(${r.id})" style="margin-left:auto"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
       </div>
     </div>`).join('');
@@ -444,22 +552,14 @@ function render(){
 function cp(id){
   const r=results.find(x=>x.id===id); if(!r) return;
   const fb=()=>{ const ta=document.createElement('textarea'); ta.value=r.value; ta.style.cssText='position:fixed;opacity:0'; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');toast('Copied!');}catch(_){toast('Copy failed');} document.body.removeChild(ta); };
-  if(navigator.clipboard){ navigator.clipboard.writeText(r.value).then(()=>toast('Copied!')).catch(fb); }
-  else fb();
+  navigator.clipboard?navigator.clipboard.writeText(r.value).then(()=>toast('Copied!')).catch(fb):fb();
 }
 function del(id){ results=results.filter(x=>x.id!==id); render(); }
 function clearAll(){ results=[]; render(); }
 
 // ── boot ──────────────────────────────────────────────────────────────────
-window.addEventListener('load', ()=>{
-  document.getElementById('libStatus').style.display='block';
-  // ZXing loads via script tag; poll until ready
-  const wait = setInterval(()=>{
-    if(typeof ZXing !== 'undefined'){
-      clearInterval(wait);
-      initLib();
-    }
-  }, 100);
+window.addEventListener('load',()=>{
+  const wait=setInterval(()=>{ if(typeof ZXing!=='undefined'){ clearInterval(wait); initLib(); }},100);
 });
 </script>
 </body>
