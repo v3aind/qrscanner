@@ -17,42 +17,40 @@
 }
 html,body{height:100%;background:var(--bg);color:var(--tx);font-family:var(--f);overflow-x:hidden}
 body{display:flex;flex-direction:column;min-height:100dvh;max-width:480px;margin:0 auto}
-
 header{padding:16px 18px 14px;display:flex;align-items:center;gap:12px;border-bottom:0.5px solid var(--br)}
 .logo{width:36px;height:36px;background:var(--a);border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .logo svg{width:19px;height:19px;stroke:#fff;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 header h1{font-size:17px;font-weight:700}
 header p{font-size:11px;color:var(--mu);margin-top:1px}
-
 .tabs{display:flex;background:var(--bg);border-bottom:0.5px solid var(--br);padding:0 18px}
 .tab{flex:1;padding:11px 8px;border:none;background:transparent;font-family:var(--f);font-size:13px;font-weight:500;color:var(--mu);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;border-bottom:2px solid transparent;transition:all 0.15s;position:relative;top:0.5px}
 .tab.active{color:var(--a);border-bottom-color:var(--a)}
-
 main{flex:1;padding:14px 14px 0;overflow-y:auto}
-
 .vwrap{position:relative;border-radius:var(--r);overflow:hidden;background:#000;width:100%;aspect-ratio:4/3;border:0.5px solid var(--br)}
 #vid{width:100%;height:100%;object-fit:cover;display:block}
 #cnv{display:none}
 .overlay{position:absolute;inset:0;pointer-events:none;display:flex;align-items:center;justify-content:center}
-.frame{width:55%;aspect-ratio:1;position:relative}
-.c{position:absolute;width:20px;height:20px}
+.frame{width:70%;aspect-ratio:1;position:relative}
+.c{position:absolute;width:22px;height:22px}
 .c.tl{top:0;left:0;border-top:3px solid var(--a);border-left:3px solid var(--a);border-radius:3px 0 0 0}
 .c.tr{top:0;right:0;border-top:3px solid var(--a);border-right:3px solid var(--a);border-radius:0 3px 0 0}
 .c.bl{bottom:0;left:0;border-bottom:3px solid var(--a);border-left:3px solid var(--a);border-radius:0 0 0 3px}
 .c.br{bottom:0;right:0;border-bottom:3px solid var(--a);border-right:3px solid var(--a);border-radius:0 0 3px 0}
-.sline{position:absolute;left:6px;right:6px;height:2px;background:linear-gradient(90deg,transparent,var(--a),#9FE1CB,var(--a),transparent);top:0;animation:sm 1.8s ease-in-out infinite;display:none}
+.sline{position:absolute;left:6px;right:6px;height:2px;background:linear-gradient(90deg,transparent,var(--a),#9FE1CB,var(--a),transparent);top:0;animation:sm 2s ease-in-out infinite;display:none}
 .scanning .sline{display:block}
 @keyframes sm{0%,100%{top:6px;opacity:0.3}50%{top:calc(100% - 8px);opacity:1}}
-
 .cbadge{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.75);color:#fff;font-size:11px;font-family:var(--m);padding:5px 14px;border-radius:20px;display:flex;align-items:center;gap:7px;white-space:nowrap}
 .dot{width:7px;height:7px;border-radius:50%;background:var(--a);animation:bl 1.2s infinite;flex-shrink:0}
 .dot.off{background:var(--mu);animation:none}
 @keyframes bl{0%,100%{opacity:1}50%{opacity:0.2}}
-
-/* permission error box */
-.err-box{display:none;background:#3A1010;border:0.5px solid #7A2020;border-radius:var(--r2);padding:14px 16px;margin-top:10px;font-size:13px;line-height:1.6;color:#F0AAAA}
+.err-box{display:none;background:#3A1010;border:0.5px solid #7A2020;border-radius:var(--r2);padding:14px 16px;margin-top:10px;font-size:13px;line-height:1.7;color:#F0AAAA}
 .err-box.show{display:block}
 .err-box strong{display:block;margin-bottom:4px;color:#F7C1C1;font-size:14px}
+
+/* format chips */
+.formats{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chip{font-size:11px;font-family:var(--m);padding:4px 10px;border-radius:20px;border:0.5px solid var(--br2);background:var(--bg3);color:var(--mu);cursor:default}
+.chip.on{background:#1D9E7520;color:#5DCAA5;border-color:rgba(29,158,117,0.4)}
 
 .ctrls{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;margin-top:10px}
 .btn{padding:13px 14px;border-radius:var(--r2);border:0.5px solid var(--br2);background:var(--bg3);font-family:var(--f);font-size:13px;font-weight:500;color:var(--tx);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:background 0.15s;-webkit-appearance:none}
@@ -62,7 +60,6 @@ main{flex:1;padding:14px 14px 0;overflow-y:auto}
 .btn.p:active{background:var(--a2)}
 .btn.icon{padding:13px 14px;flex:0}
 .btn.ton{background:var(--al);color:var(--a2);border-color:var(--a)}
-
 .uz{border:1.5px dashed var(--br2);border-radius:var(--r);padding:38px 20px;text-align:center;cursor:pointer;background:var(--bg2)}
 .uz svg{width:38px;height:38px;stroke:var(--a);fill:none;stroke-width:1.5;stroke-linecap:round;margin-bottom:12px}
 .uz p{color:var(--mu);font-size:13px;line-height:1.6}
@@ -71,34 +68,33 @@ main{flex:1;padding:14px 14px 0;overflow-y:auto}
 .ipw{border-radius:var(--r);overflow:hidden;border:0.5px solid var(--br);background:#000;display:none;margin-bottom:10px;max-height:220px;align-items:center;justify-content:center}
 #upi{max-width:100%;max-height:220px;object-fit:contain;display:block;margin:0 auto}
 .uact{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:10px}
-
 .rh{display:flex;align-items:center;justify-content:space-between;margin:16px 0 10px}
 .rt{font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px}
 .bdg{background:var(--bg4);color:var(--a);font-size:11px;font-family:var(--m);padding:2px 9px;border-radius:20px;border:0.5px solid var(--br2)}
 .cb{font-size:12px;color:var(--mu);background:none;border:none;cursor:pointer;font-family:var(--f)}
-
 .rl{display:flex;flex-direction:column;gap:8px;padding-bottom:32px}
 .ri{background:var(--bg2);border:0.5px solid var(--br);border-radius:var(--r);padding:12px 14px;animation:fi 0.22s ease}
 @keyframes fi{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
 .ri.new{border-color:rgba(29,158,117,0.35);background:#1D9E7510}
-.rm{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.rm{display:flex;align-items:center;gap:8px;margin-bottom:7px;flex-wrap:wrap}
 .tt{font-size:10px;font-family:var(--m);font-weight:500;padding:2px 8px;border-radius:4px}
-.tt.qr{background:#3C348920;color:#AFA9EC}
+.tt.QR_CODE,.tt.qr{background:#3C348920;color:#AFA9EC}
 .tt.url{background:#185FA520;color:#85B7EB}
-.tt.barcode{background:#1D9E7520;color:#5DCAA5}
+.tt.EAN_13,.tt.EAN_8,.tt.UPC_A,.tt.UPC_E,.tt.barcode{background:#1D9E7520;color:#5DCAA5}
+.tt.CODE_128,.tt.CODE_39,.tt.CODE_93{background:#BA751720;color:#EF9F27}
+.tt.DATA_MATRIX,.tt.AZTEC,.tt.PDF_417{background:#63991120;color:#97C459}
+.tt.ITF,.tt.CODABAR{background:#D4537E20;color:#ED93B1}
 .rtime{font-size:10px;color:var(--mu);margin-left:auto;font-family:var(--m)}
 .rv{font-size:12px;color:var(--tx);font-family:var(--m);word-break:break-all;line-height:1.6;background:var(--bg3);padding:8px 10px;border-radius:6px;border:0.5px solid var(--br)}
 .ra{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
 .mb{font-size:11px;padding:5px 11px;border-radius:6px;border:0.5px solid var(--br2);background:var(--bg3);color:var(--tx);cursor:pointer;font-family:var(--f);display:flex;align-items:center;gap:4px;-webkit-appearance:none}
 .mb:active{background:var(--bg4)}
-
 .es{text-align:center;padding:28px 16px;color:var(--mu);font-size:13px}
-.es svg{width:32px;height:32px;stroke:var(--mu);fill:none;stroke-width:1.5;margin-bottom:10px;opacity:0.3}
-
+.es svg{width:32px;height:32px;stroke:var(--mu);fill:none;stroke-width:1.5;margin-bottom:10px;opacity:0.3;display:block;margin:0 auto 10px}
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--bg4);color:var(--tx);font-size:13px;padding:9px 20px;border-radius:24px;opacity:0;transition:all 0.2s;pointer-events:none;z-index:999;font-family:var(--f);white-space:nowrap;border:0.5px solid var(--br2)}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .pane{display:none}.pane.active{display:block}
-@keyframes spin{to{transform:rotate(360deg)}}
+.loading{color:var(--mu);font-size:12px;font-family:var(--m);text-align:center;padding:8px 0}
 </style>
 </head>
 <body>
@@ -108,23 +104,22 @@ main{flex:1;padding:14px 14px 0;overflow-y:auto}
   </div>
   <div>
     <h1>QR &amp; Barcode Scanner</h1>
-    <p>Camera · Upload · Decode</p>
+    <p>QR · EAN · UPC · Code128 · and more</p>
   </div>
 </header>
 
 <div class="tabs">
   <button class="tab active" id="tab-camera" onclick="switchTab('camera')">
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
     Camera
   </button>
   <button class="tab" id="tab-upload" onclick="switchTab('upload')">
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><polyline points="8 12 12 8 16 12"/><line x1="12" y1="8" x2="12" y2="16"/></svg>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><polyline points="8 12 12 8 16 12"/><line x1="12" y1="8" x2="12" y2="16"/></svg>
     Upload
   </button>
 </div>
 
 <main>
-  <!-- Camera -->
   <div class="pane active" id="pane-camera">
     <div class="vwrap" id="vwrap">
       <video id="vid" autoplay playsinline muted webkit-playsinline></video>
@@ -144,18 +139,22 @@ main{flex:1;padding:14px 14px 0;overflow-y:auto}
 
     <div class="err-box" id="errBox">
       <strong>⚠ Camera blocked</strong>
-      Chrome requires HTTPS to access the camera.<br>
-      • Open this page via <strong>https://</strong> URL (e.g. Netlify, tiiny.host)<br>
-      • Or in Chrome address bar go to <strong>Site settings → Camera → Allow</strong>
+      Chrome only allows camera on <strong>https://</strong> pages.<br>
+      Host this file on GitHub Pages, Netlify, or tiiny.host to get an HTTPS URL.
     </div>
+
+    <div id="libStatus" class="loading" style="display:none">⏳ Loading decoder library…</div>
+
+    <!-- detected format chips -->
+    <div class="formats" id="fmtChips"></div>
 
     <div class="ctrls">
       <button class="btn p" id="startBtn" onclick="startCamera()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
         Start camera
       </button>
       <button class="btn" id="stopBtn" onclick="stopCamera()" disabled>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
         Stop
       </button>
       <button class="btn icon" id="torchBtn" onclick="toggleTorch()" disabled title="Torch">
@@ -164,7 +163,6 @@ main{flex:1;padding:14px 14px 0;overflow-y:auto}
     </div>
   </div>
 
-  <!-- Upload -->
   <div class="pane" id="pane-upload">
     <div class="ipw" id="ipw"><img id="upi" src="" alt="preview"></div>
     <div class="uz" id="dz" onclick="document.getElementById('fi').click()">
@@ -175,19 +173,18 @@ main{flex:1;padding:14px 14px 0;overflow-y:auto}
     <input type="file" id="fi" accept="image/*" onchange="handleFile(this.files[0])">
     <div class="uact">
       <button class="btn p" id="scanBtn" onclick="scanImg()" disabled>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
         Scan image
       </button>
-      <button class="btn icon" id="clrBtn" onclick="clearUpload()" disabled>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      <button class="btn icon" onclick="clearUpload()" id="clrBtn" disabled>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
     </div>
   </div>
 
-  <!-- Results -->
   <div class="rh">
     <div class="rt">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--a)" stroke-width="2" stroke-linecap="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--a)" stroke-width="2" stroke-linecap="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
       Results <span class="bdg" id="cnt">0</span>
     </div>
     <button class="cb" onclick="clearAll()">Clear all</button>
@@ -202,24 +199,42 @@ main{flex:1;padding:14px 14px 0;overflow-y:auto}
 
 <div class="toast" id="toast"></div>
 
-<script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+<!-- ZXing: supports QR, EAN-13, EAN-8, UPC-A, UPC-E, Code128, Code39, Code93, ITF, Codabar, DataMatrix, Aztec, PDF417 -->
+<script src="https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js"></script>
 <script>
 'use strict';
 
-let stream = null, scanLoop = null, torch = false, results = [], uploadSrc = null;
+let codeReader = null, stream = null, scanLoop = null, torch = false, results = [], uploadSrc = null;
+let libReady = false;
 
-// ── helpers ──────────────────────────────────────────────────────────────
+// ── init ZXing ────────────────────────────────────────────────────────────
+function initLib(){
+  try {
+    // MultiFormatReader decodes ALL barcode & QR formats
+    codeReader = new ZXing.BrowserMultiFormatReader();
+    libReady = true;
+    document.getElementById('libStatus').style.display = 'none';
+    showFormatChips();
+  } catch(e) {
+    document.getElementById('libStatus').textContent = '⚠ Decoder failed to load. Refresh page.';
+  }
+}
+
+const FORMATS = ['QR_CODE','EAN_13','EAN_8','UPC_A','UPC_E','CODE_128','CODE_39','CODE_93','ITF','CODABAR','DATA_MATRIX','AZTEC','PDF_417'];
+
+function showFormatChips(){
+  const el = document.getElementById('fmtChips');
+  el.innerHTML = FORMATS.map(f=>`<span class="chip on tt ${f}">${f.replace('_',' ')}</span>`).join('');
+}
+
+// ── helpers ───────────────────────────────────────────────────────────────
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }
 function escA(s){ return String(s).replace(/"/g,'&quot;') }
 let tid;
 function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(tid); tid=setTimeout(()=>t.classList.remove('show'),2500); }
+function setStatus(on,msg){ document.getElementById('sdot').className='dot'+(on?'':' off'); document.getElementById('stxt').textContent=msg; }
 
-function setStatus(on, msg){
-  document.getElementById('sdot').className = 'dot'+(on?'':' off');
-  document.getElementById('stxt').textContent = msg;
-}
-
-// ── tabs ─────────────────────────────────────────────────────────────────
+// ── tabs ──────────────────────────────────────────────────────────────────
 function switchTab(t){
   ['camera','upload'].forEach(x=>{
     document.getElementById('tab-'+x).classList.toggle('active',x===t);
@@ -231,70 +246,53 @@ function switchTab(t){
 // ── camera ────────────────────────────────────────────────────────────────
 async function startCamera(){
   document.getElementById('errBox').classList.remove('show');
+
+  if(location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1'){
+    document.getElementById('errBox').classList.add('show');
+    return;
+  }
+  if(!libReady){ toast('Decoder still loading, please wait…'); return; }
+
   const startBtn = document.getElementById('startBtn');
   startBtn.disabled = true;
   startBtn.textContent = 'Starting…';
 
-  // must be HTTPS or localhost
-  if(location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1'){
-    document.getElementById('errBox').classList.add('show');
-    startBtn.disabled = false;
-    startBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg> Start camera';
-    return;
-  }
-
   if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
-    toast('Camera API not supported in this browser');
-    startBtn.disabled = false;
-    startBtn.textContent = 'Start camera';
-    return;
+    toast('Camera API not supported'); startBtn.disabled=false; startBtn.textContent='Start camera'; return;
   }
 
   try {
-    // try rear camera first, fall back to any
     let s;
     try {
-      s = await navigator.mediaDevices.getUserMedia({
-        video:{ facingMode:{ ideal:'environment' }, width:{ideal:1280}, height:{ideal:720} },
-        audio: false
-      });
+      s = await navigator.mediaDevices.getUserMedia({ video:{ facingMode:{ideal:'environment'}, width:{ideal:1280}, height:{ideal:720} }, audio:false });
     } catch(_) {
       s = await navigator.mediaDevices.getUserMedia({ video:true, audio:false });
     }
-
     stream = s;
     const vid = document.getElementById('vid');
     vid.srcObject = stream;
 
-    // ensure play resolves on mobile
-    await new Promise((res, rej) => {
-      vid.onloadedmetadata = () => { vid.play().then(res).catch(rej); };
-      setTimeout(rej, 8000); // timeout fallback
+    await new Promise((res,rej)=>{
+      vid.onloadedmetadata = ()=>{ vid.play().then(res).catch(rej); };
+      setTimeout(rej, 8000);
     });
 
     document.getElementById('stopBtn').disabled = false;
     document.getElementById('torchBtn').disabled = false;
-    setStatus(true, 'Scanning…');
     document.getElementById('vwrap').classList.add('scanning');
-    startBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg> Start camera';
+    setStatus(true,'Scanning…');
+    startBtn.textContent = 'Running…';
     startScan();
 
   } catch(e) {
-    console.error('Camera error:', e);
     startBtn.disabled = false;
-    startBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg> Start camera';
-
-    if(e.name === 'NotAllowedError' || e.name === 'PermissionDeniedError'){
+    startBtn.textContent = 'Start camera';
+    if(e.name==='NotAllowedError'||e.name==='PermissionDeniedError'){
+      document.getElementById('errBox').innerHTML='<strong>⚠ Permission denied</strong>Tap the camera icon in the address bar → Allow → reload.';
       document.getElementById('errBox').classList.add('show');
-      document.getElementById('errBox').innerHTML = '<strong>⚠ Permission denied</strong>In Chrome: tap the lock/camera icon in the address bar → Allow camera → reload the page.';
-    } else if(e.name === 'NotFoundError'){
-      toast('No camera found on this device');
-    } else if(e.name === 'NotReadableError'){
-      toast('Camera is in use by another app. Close it and retry.');
-    } else {
-      toast('Camera error: ' + (e.message || e.name));
-      document.getElementById('errBox').classList.add('show');
-    }
+    } else if(e.name==='NotFoundError'){ toast('No camera found on this device');
+    } else if(e.name==='NotReadableError'){ toast('Camera busy — close other apps and retry');
+    } else { toast('Camera error: '+(e.message||e.name)); }
   }
 }
 
@@ -303,6 +301,7 @@ function stopCamera(){
   if(scanLoop){ clearInterval(scanLoop); scanLoop=null; }
   torch=false;
   document.getElementById('startBtn').disabled=false;
+  document.getElementById('startBtn').textContent='Start camera';
   document.getElementById('stopBtn').disabled=true;
   document.getElementById('torchBtn').disabled=true;
   document.getElementById('torchBtn').classList.remove('ton');
@@ -311,26 +310,36 @@ function stopCamera(){
 }
 
 function startScan(){
-  const vid=document.getElementById('vid'), cnv=document.getElementById('cnv'), ctx=cnv.getContext('2d');
+  const vid=document.getElementById('vid'), cnv=document.getElementById('cnv'), ctx=cnv.getContext('2d',{willReadFrequently:true});
   let last='', lastT=0;
-  scanLoop=setInterval(()=>{
-    if(!stream || vid.readyState < 2 || vid.videoWidth===0) return;
+
+  scanLoop = setInterval(async ()=>{
+    if(!stream || vid.readyState<2 || vid.videoWidth===0) return;
     cnv.width=vid.videoWidth; cnv.height=vid.videoHeight;
     ctx.drawImage(vid,0,0);
-    try{
-      const id=ctx.getImageData(0,0,cnv.width,cnv.height);
-      const code=jsQR(id.data,id.width,id.height,{inversionAttempts:'dontInvert'});
-      if(code && code.data){
-        const now=Date.now();
-        if(code.data!==last || now-lastT>3000){
-          last=code.data; lastT=now;
-          addResult(code.data, typeOf(code.data), 'QR');
+
+    try {
+      // Use ZXing to decode from canvas ImageData
+      const imageData = ctx.getImageData(0,0,cnv.width,cnv.height);
+      const luminanceSource = new ZXing.HTMLCanvasElementLuminanceSource(cnv);
+      const binaryBitmap = new ZXing.BinaryBitmap(new ZXing.HybridBinarizer(luminanceSource));
+      const result = codeReader.decodeBitmap(binaryBitmap);
+
+      if(result){
+        const val = result.getText();
+        const fmt = result.getBarcodeFormat ? ZXing.BarcodeFormat[result.getBarcodeFormat()] : 'CODE';
+        const now = Date.now();
+        if(val !== last || now-lastT > 3000){
+          last=val; lastT=now;
+          addResult(val, fmt||'CODE');
           setStatus(true,'✓ Found!');
           setTimeout(()=>{ if(stream) setStatus(true,'Scanning…'); },1500);
         }
       }
-    }catch(_){}
-  },300);
+    } catch(e){
+      // NotFoundException is thrown when nothing found — normal, ignore
+    }
+  }, 250);
 }
 
 async function toggleTorch(){
@@ -367,35 +376,44 @@ function clearUpload(){
   document.getElementById('fi').value='';
 }
 
-function scanImg(){
-  if(!uploadSrc) return;
+async function scanImg(){
+  if(!uploadSrc||!libReady) return;
   const btn=document.getElementById('scanBtn');
   btn.disabled=true; btn.textContent='Scanning…';
-  const img=new Image();
-  img.onload=()=>{
+
+  try {
+    const img = new Image();
+    await new Promise((res,rej)=>{ img.onload=res; img.onerror=rej; img.src=uploadSrc; });
     const c=document.createElement('canvas');
     c.width=img.width; c.height=img.height;
     const ctx=c.getContext('2d');
     ctx.drawImage(img,0,0);
-    const d=ctx.getImageData(0,0,c.width,c.height);
-    const code=jsQR(d.data,d.width,d.height,{inversionAttempts:'attemptBoth'});
-    btn.disabled=false; btn.textContent='Scan image';
-    if(code && code.data){ addResult(code.data, typeOf(code.data), 'QR'); toast('✓ QR found!'); }
-    else toast('No QR code found. Try a clearer image.');
-  };
-  img.src=uploadSrc;
+
+    const luminanceSource = new ZXing.HTMLCanvasElementLuminanceSource(c);
+    const binaryBitmap = new ZXing.BinaryBitmap(new ZXing.HybridBinarizer(luminanceSource));
+    const result = codeReader.decodeBitmap(binaryBitmap);
+
+    if(result){
+      const val=result.getText();
+      const fmt=result.getBarcodeFormat ? ZXing.BarcodeFormat[result.getBarcodeFormat()] : 'CODE';
+      addResult(val, fmt||'CODE');
+      toast('✓ Detected: '+(fmt||'code'));
+    } else {
+      toast('Nothing detected. Try a clearer image.');
+    }
+  } catch(e){
+    if(e.name==='NotFoundException') toast('No barcode/QR found in image.');
+    else toast('Scan error: '+(e.message||e.name));
+  }
+
+  btn.disabled=false; btn.textContent='Scan image';
 }
 
 // ── results ───────────────────────────────────────────────────────────────
-function typeOf(v){
-  if(/^https?:\/\//i.test(v)) return 'url';
-  if(/^[A-Z0-9\-\. \/\$\+\%]{4,20}$/i.test(v)&&v.length<=20) return 'barcode';
-  return 'qr';
-}
-
-function addResult(value, type, fmt){
+function addResult(value, format){
   const t=new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
-  results.unshift({value,type,fmt,t,id:Date.now()});
+  const isUrl=/^https?:\/\//i.test(value);
+  results.unshift({value, format, t, isUrl, id:Date.now()});
   render();
 }
 
@@ -409,7 +427,7 @@ function render(){
   el.innerHTML=results.map((r,i)=>`
     <div class="ri${i===0?' new':''}">
       <div class="rm">
-        <span class="tt ${r.type}">${r.fmt} · ${r.type.toUpperCase()}</span>
+        <span class="tt ${r.format}">${r.format.replace(/_/g,' ')}</span>
         <span class="rtime">${r.t}</span>
       </div>
       <div class="rv">${esc(r.value)}</div>
@@ -417,22 +435,32 @@ function render(){
         <button class="mb" onclick="cp(${r.id})">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy
         </button>
-        ${r.type==='url'?`<button class="mb" onclick="window.open('${escA(r.value)}','_blank')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Open</button>`:''}
-        <button class="mb" onclick="del(${r.id})" style="margin-left:auto">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-        </button>
+        ${r.isUrl?`<button class="mb" onclick="window.open('${escA(r.value)}','_blank')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Open URL</button>`:''}
+        <button class="mb" onclick="del(${r.id})" style="margin-left:auto"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
       </div>
     </div>`).join('');
 }
 
 function cp(id){
   const r=results.find(x=>x.id===id); if(!r) return;
-  const fallback=()=>{ const ta=document.createElement('textarea'); ta.value=r.value; ta.style.cssText='position:fixed;opacity:0'; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');toast('Copied!');}catch(_){toast('Copy failed');} document.body.removeChild(ta); };
-  if(navigator.clipboard){ navigator.clipboard.writeText(r.value).then(()=>toast('Copied!')).catch(fallback); }
-  else fallback();
+  const fb=()=>{ const ta=document.createElement('textarea'); ta.value=r.value; ta.style.cssText='position:fixed;opacity:0'; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');toast('Copied!');}catch(_){toast('Copy failed');} document.body.removeChild(ta); };
+  if(navigator.clipboard){ navigator.clipboard.writeText(r.value).then(()=>toast('Copied!')).catch(fb); }
+  else fb();
 }
 function del(id){ results=results.filter(x=>x.id!==id); render(); }
 function clearAll(){ results=[]; render(); }
+
+// ── boot ──────────────────────────────────────────────────────────────────
+window.addEventListener('load', ()=>{
+  document.getElementById('libStatus').style.display='block';
+  // ZXing loads via script tag; poll until ready
+  const wait = setInterval(()=>{
+    if(typeof ZXing !== 'undefined'){
+      clearInterval(wait);
+      initLib();
+    }
+  }, 100);
+});
 </script>
 </body>
 </html>
